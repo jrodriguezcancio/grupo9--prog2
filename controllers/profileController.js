@@ -1,7 +1,12 @@
+
+const db = require('../localData/db');
+const database = require('../localData/db');
+
 const profileController = {
     profile: function (req, res) {
-        res.render('profile'); 
+        const usuario = database.usuario;
+        res.render('profile', { usuario });
     }
-}
+};
 
-module.exports = profileController
+module.exports = profileController;

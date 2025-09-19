@@ -2,14 +2,14 @@
 <html lang="es">
 <!-- Include Head -->
 <head>
-<%- include('./partials/head.ejs') %>
+    <%- include('partials/head') %>
 </head>
 <body>
-	<!-- Header -->
-	<header class="main-header">
-		<%- include('./partials/headerLogueado') %>
-	</header>
-	<!-- /Header -->
+<!-- Header -->
+<header class="main-header">
+    <%- include('partials/headerLogueado') %>
+</header>
+<!-- /Header -->
 
 	<!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
@@ -28,9 +28,10 @@
 				</div>
 				<div>
 					<ul class="">
-						<li>8 productos</li>
-						<li>200 seguidores</li>
-						<li>300 comentarios</li>
+						<li><%= usuario.email %></li>
+						<li><%= usuario.productos %> productos</li>
+						<li><%= usuario.seguidores %> seguidores</li>
+						<li><%= usuario.comentarios %> comentarios</li>
 					</ul>
 				</div>
 			</div>
