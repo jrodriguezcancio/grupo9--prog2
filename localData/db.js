@@ -11,123 +11,145 @@ const db = {
   productos: [
     {
       id: 1,
-      nombre: "Zapatillas Nike Air",
-      precio: 35000,
-      descripcion: "Zapatillas deportivas de última generación, cómodas y resistentes.",
-      imagen: "/images/products/nike-air.jpg",
+      nombre: "Toyota Corolla",
+      precio: 15000,
+      descripcion: "Año 2020 · 80.000 km · Transmisión automática · Nafta",
+      imagen: "/images/products/toyota-corolla.jpg",
       comentarios: [
         {
           usuario: "Pedro Gómez",
-          texto: "Muy buenas, me resultaron súper cómodas.",
+          texto: "Muy confiable, gasta poco combustible.",
           imagenPerfil: "/images/users/default-image.png"
         },
         {
           usuario: "María López",
-          texto: "La calidad es excelente, valen la pena.",
+          texto: "Excelente relación precio/calidad.",
           imagenPerfil: "/images/users/default-image.png"
         }
       ]
     },
     {
       id: 2,
-      nombre: "Smartphone Samsung S21",
-      precio: 120000,
-      descripcion: "Pantalla AMOLED de 6.5'', 128GB de almacenamiento, 5G.",
-      imagen: "/images/products/samsung-s21.jpg",
+      nombre: "Ford Mustang",
+      precio: 28000,
+      descripcion: "Año 2018 · 45.000 km · Transmisión manual · Motor V8",
+      imagen: "/images/products/ford-mustang.jpg",
       comentarios: [
         {
           usuario: "Carlos Ruiz",
-          texto: "El celular anda perfecto y la cámara es increíble.",
+          texto: "Una máquina, suena increíble.",
           imagenPerfil: "/images/users/default-image.png"
         }
       ]
     },
     {
       id: 3,
-      nombre: "Notebook Lenovo IdeaPad",
-      precio: 220000,
-      descripcion: "Notebook Lenovo IdeaPad 15.6'' con procesador i5 y 8GB RAM.",
-      imagen: "/images/products/lenovo-ideapad.jpg",
+      nombre: "Chevrolet Silverado",
+      precio: 32000,
+      descripcion: "Año 2019 · 70.000 km · Transmisión automática · 4x4",
+      imagen: "/images/products/chevrolet-silverado.jpg",
       comentarios: [
         {
           usuario: "Lucía Fernández",
-          texto: "Rinde muy bien para trabajar y estudiar.",
+          texto: "Ideal para trabajo pesado y viajes largos.",
           imagenPerfil: "/images/users/default-image.png"
         }
       ]
     },
     {
       id: 4,
-      nombre: "Auriculares Inalámbricos JBL",
-      precio: 25000,
-      descripcion: "Auriculares Bluetooth con cancelación de ruido.",
-      imagen: "/images/products/jbl-headphones.jpg",
+      nombre: "Honda Civic",
+      precio: 22000,
+      descripcion: "Año 2021 · 25.000 km · Transmisión automática · Nafta",
+      imagen: "/images/products/honda-civic.jpg",
       comentarios: []
     },
     {
       id: 5,
-      nombre: "Cámara Canon EOS Rebel",
-      precio: 300000,
-      descripcion: "Cámara réflex digital con lente 18-55mm.",
-      imagen: "/images/products/canon-eos.jpg",
+      nombre: "BMW Serie 3",
+      precio: 26000,
+      descripcion: "Año 2017 · 60.000 km · Caja automática · Motor turbo",
+      imagen: "/images/products/bmw-serie3.jpg",
       comentarios: [
         {
           usuario: "Marta Díaz",
-          texto: "Saca fotos espectaculares, la uso para mi emprendimiento.",
+          texto: "Lujo y comodidad, vale cada dólar.",
           imagenPerfil: "/images/users/default-image.png"
         }
       ]
     },
     {
       id: 6,
-      nombre: "Silla Gamer Redragon",
-      precio: 60000,
-      descripcion: "Silla ergonómica con apoyabrazos ajustable y respaldo reclinable.",
-      imagen: "/images/products/silla-gamer.jpg",
+      nombre: "Jeep Wrangler",
+      precio: 24000,
+      descripcion: "Año 2016 · 90.000 km · Transmisión manual · 4x4",
+      imagen: "/images/products/jeep-wrangler.jpg",
       comentarios: []
     },
     {
       id: 7,
-      nombre: "Consola PlayStation 5",
-      precio: 500000,
-      descripcion: "Consola PS5 con control DualSense.",
-      imagen: "/images/products/ps5.jpg",
+      nombre: "Tesla Model 3",
+      precio: 35000,
+      descripcion: "Año 2022 · 15.000 km · Automático · 100% eléctrico",
+      imagen: "/images/products/tesla-model3.jpg",
       comentarios: [
         {
           usuario: "Diego Torres",
-          texto: "La mejor consola, gráficos impresionantes.",
+          texto: "Tecnología de otro nivel, muy rápido.",
           imagenPerfil: "/images/users/default-image.png"
         }
       ]
     },
     {
       id: 8,
-      nombre: "Mochila Adidas",
-      precio: 15000,
-      descripcion: "Mochila deportiva con múltiples compartimentos.",
-      imagen: "/images/products/adidas-backpack.jpg",
+      nombre: "Volkswagen Golf",
+      precio: 18000,
+      descripcion: "Año 2019 · 50.000 km · Transmisión manual · Hatchback",
+      imagen: "/images/products/volkswagen-golf.jpg",
       comentarios: []
     },
     {
       id: 9,
-      nombre: "Reloj Inteligente Xiaomi Mi Band 6",
-      precio: 18000,
-      descripcion: "Reloj inteligente con monitoreo de actividad y sueño.",
-      imagen: "/images/products/xiaomi-band6.jpg",
+      nombre: "Audi A4",
+      precio: 27000,
+      descripcion: "Año 2018 · 55.000 km · Caja automática · Motor 2.0T",
+      imagen: "/images/products/audi-a4.jpg",
       comentarios: [
         {
           usuario: "Ana Castillo",
-          texto: "Me encanta, muy útil para el gimnasio.",
+          texto: "Muy elegante y cómodo para viajes largos.",
           imagenPerfil: "/images/users/default-image.png"
         }
       ]
     },
     {
       id: 10,
-      nombre: "Parlante Bluetooth Sony",
-      precio: 40000,
-      descripcion: "Parlante portátil con sonido estéreo y batería de 12 horas.",
-      imagen: "/images/products/sony-speaker.jpg",
+      nombre: "Mercedes-Benz Clase C",
+      precio: 30000,
+      descripcion: "Año 2017 · 65.000 km · Automático · Sedan de lujo",
+      imagen: "/images/products/mercedes-clasec.jpg",
+      comentarios: []
+    },
+    {
+      id: 11,
+      nombre: "Nissan Sentra",
+      precio: 17000,
+      descripcion: "Año 2020 · 40.000 km · Automático · Nafta",
+      imagen: "/images/products/nissan-sentra.jpg",
+      comentarios: [
+        {
+          usuario: "Laura Medina",
+          texto: "Muy cómodo y económico en ciudad.",
+          imagenPerfil: "/images/users/default-image.png"
+        }
+      ]
+    },
+    {
+      id: 12,
+      nombre: "Hyundai Tucson",
+      precio: 25000,
+      descripcion: "Año 2019 · 55.000 km · Automática · SUV",
+      imagen: "/images/products/hyundai-tucson.jpg",
       comentarios: []
     }
   ]
