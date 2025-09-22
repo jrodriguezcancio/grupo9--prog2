@@ -9,7 +9,11 @@
 <body>
 	<!-- Header -->
 	<header class="main-header">
-		<%- include('./partials/header') %>
+	<% if (usuario) { %>
+	 <%- include('partials/headerLogueado') %>
+	<% } else { %>
+	 <%- include('partials/header') %>
+	<% } %>
 	</header>
 	<!-- /Header -->
 
@@ -21,7 +25,7 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/profile" method="get">
+				<form action="/" method="get">
 				<label class="form">Nombre de usuario(Email):</label>
 							<input type="text" name="nombreUsuario" id="nombreUsuario" class="form-input" required>
 							<label class="form">Contraseña:</label>
