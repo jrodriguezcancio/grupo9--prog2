@@ -16,45 +16,30 @@
 	<!-- Novedades -->
 	<!-- Search Result -->
 	<div class="container products-wrapper">
-		<div class="d-flex align-items-center">
-			<h2 class="products-title">Resultados para: <%= termino %></h2> 
-		</div>
-		
-		<div class="product-detail">
-			<div class="row">
-				<article class="col-12 col-lg-8 product-detail-info">
-					<h1><%= allproducts[0].nombre %></h1>
-					<img src="<%= allproducts[0].imagen %>" alt="<%= allproducts[0].nombre %>" class="product-detail-img">
-					<p class="product-detail-description">
-						<%= allproducts[0].descripcion %>
-					</p>
-				</article>
+    <div class="d-flex align-items-center">
+        <h2 class="products-title">Resultados para: <%= termino %></h2>
+    </div>
 
-				<div class="col-12 col-lg-4">
-					<section class="comments">
-						<% for (var i = 0; i < allproducts[0].comentarios.length; i++) { 
-							let comentario = allproducts[0].comentarios[i]; %>
-						<article>
-							<img src="<%= comentario.imagenPerfil %>" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile"><%= comentario.usuario %></a> </strong>
-									<%= comentario.texto %>
-								</p>
-							</div>
-						</article>
-						<% } %>
-					</section>
-
-					<form class="form" action="" method="GET">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-					</form>
-					<hr>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <% for (let i = 0; i < allproducts.length; i++) { 
+            let producto = allproducts[i]; %>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <section class="product-box">
+                    <a href="/product/<%= producto.id %>">
+                        <figure class="product-box_image">
+                            <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
+                        </figure>
+                        <article class="product-box_data">
+                            <h2><%= producto.nombre %></h2>
+                            <p><%= producto.descripcion %></p>
+                            <p>Comentarios: <%= producto.comentarios.length %></p>
+                        </article>
+                    </a>
+                </section>
+            </div>
+        <% } %>
+    </div>
+</div>
 
 
 	<!-- footer -->

@@ -5,7 +5,7 @@ const db = {
     password: "123456", 
     fechaNacimiento: "1990-05-14",
     domicilio: "Av. callao 742",
-    avatar: "/images/users/default-image.png"
+    avatar: "/images/users/fotodeperfil.jpg"
   },
 
   productos: [
@@ -19,12 +19,12 @@ const db = {
         {
           usuario: "Pedro Gómez",
           texto: "Muy confiable, gasta poco combustible.",
-          imagenPerfil: "/images/users/default-image.png"
+          imagenPerfil: "/images/users/fotodeperfil.jpg"
         },
         {
           usuario: "María López",
           texto: "Excelente relación precio/calidad.",
-          imagenPerfil: "/images/users/default-image.png"
+          imagenPerfil: "/images/users/fotodeperfil.jpg"
         }
       ]
     },
@@ -38,7 +38,7 @@ const db = {
         {
           usuario: "Carlos Ruiz",
           texto: "Una máquina, suena increíble.",
-          imagenPerfil: "/images/users/default-image.png"
+          imagenPerfil: "/images/users/fotodeperfil.jpg"
         }
       ]
     },
@@ -52,7 +52,7 @@ const db = {
         {
           usuario: "Lucía Fernández",
           texto: "Ideal para trabajo pesado y viajes largos.",
-          imagenPerfil: "/images/users/default-image.png"
+          imagenPerfil: "/images/users/fotodeperfil.jpg"
         }
       ]
     },
@@ -74,7 +74,7 @@ const db = {
         {
           usuario: "Marta Díaz",
           texto: "Lujo y comodidad, vale cada dólar.",
-          imagenPerfil: "/images/users/default-image.png"
+          imagenPerfil: "/images/users/fotodeperfil.jpg"
         }
       ]
     },
@@ -96,7 +96,7 @@ const db = {
         {
           usuario: "Diego Torres",
           texto: "Tecnología de otro nivel, muy rápido.",
-          imagenPerfil: "/images/users/default-image.png"
+          imagenPerfil: "/images/users/fotodeperfil.jpg"
         }
       ]
     },
@@ -118,7 +118,7 @@ const db = {
         {
           usuario: "Ana Castillo",
           texto: "Muy elegante y cómodo para viajes largos.",
-          imagenPerfil: "/images/users/default-image.png"
+          imagenPerfil: "/images/users/fotodeperfil.jpg"
         }
       ]
     },
@@ -140,7 +140,7 @@ const db = {
         {
           usuario: "Laura Medina",
           texto: "Muy cómodo y económico en ciudad.",
-          imagenPerfil: "/images/users/default-image.png"
+          imagenPerfil: "/images/users/fotodeperfil.jpg"
         }
       ]
     },

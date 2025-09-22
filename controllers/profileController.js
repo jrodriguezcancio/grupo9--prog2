@@ -5,7 +5,7 @@ const database = require('../localData/db');
 const profileController = {
     profile: function (req, res) {
         const usuario = database.usuario;
-        res.render('profile', { usuario });
+        res.render('profile', { usuario , allproducts: db.productos});
     }
 };
 
