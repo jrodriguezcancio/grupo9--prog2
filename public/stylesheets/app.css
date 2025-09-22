@@ -473,6 +473,7 @@ textarea.form-input {
 .main-title{
   font-size: 25px;
   margin-bottom: 10px;
+  color: rgb(147, 14, 14);
 }
 
 .btn{
@@ -546,4 +547,7 @@ textarea.form-input {
 
 .h2-footer{
   color: #ffffff;
+}
+.infousuario{
+  color: #8B0000;
 }
