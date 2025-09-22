@@ -74,6 +74,7 @@ hr {
 .main-header_home-link,
 .main-header_credit-link {
   display: block;
+  color:#fff
 }
 
 .main-header_credit-link {
@@ -137,6 +138,7 @@ hr {
   border: 0px;
   cursor: pointer;
   font-size: 1em;
+  color: #fff;
 }
 
 .logout:hover{
@@ -172,7 +174,8 @@ hr {
 .products-title {
   font-size: 2.4em;
   font-weight: 400;
-  color: var(--gray);
+  color: white;
+  
 }
 
 .product-box {
@@ -260,7 +263,7 @@ hr {
 
 /*====== Footer ======*/
 .main-footer {
-  background-color: #ffffff;
+  background-color: #000000;
   padding: 20px 0;
   margin-top: 80px;
 }
@@ -272,16 +275,17 @@ hr {
 .footer-data i {
   color: var(--light-blue);
   font-size: 3.5em;
+  color: red;
 }
 
 .footer-data h2 {
-  color: var(--gray);
+  color: white;
   font-size: 2.4em;
   font-weight: 400;
 }
 
 .footer-data p {
-  color: var(--gray);
+  color: white;
   font-size: 1.5em;
   font-weight: 300;
 }
@@ -429,6 +433,7 @@ hr {
   display: inline-block;
   font-size: 1.6em;
   margin: 10px 0;
+  color: #ffffff;
 }
 
 .form-input {
@@ -471,7 +476,7 @@ textarea.form-input {
 }
 
 .btn{
-  background-color: #1259c3;
+  background-color: #c31212;
   padding: 10px 20px;
   border-radius: 4px;
   color: #fff;
@@ -500,6 +505,7 @@ textarea.form-input {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    color:white
   }
 
   .left-navbar a,
@@ -528,4 +534,16 @@ textarea.form-input {
     width: 95%;
     margin: auto;
   }
+}
+
+.form{
+  color: #ffffff;
+}
+
+.fasfa-shield-alt{
+  color: red;
+}
+
+.h2-footer{
+  color: #ffffff;
 }
