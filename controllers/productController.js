@@ -20,6 +20,10 @@ const productController = {
         }
 
         res.render('product', { producto: producto });
+    }, 
+    searchResults : function(req, res) {
+        const busqueda = req.query.search;
+        return res.render("search-results", { termino: busqueda, allproducts: db.productos  });
     }
 };
 
