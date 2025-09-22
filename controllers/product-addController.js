@@ -1,6 +1,6 @@
 const productAddController = {
     productAdd: function (req, res) {
-        res.render('product-add', { allproducts: db.productos, usuario: false }); 
+        res.render('product-add', { allproducts: db.productos, usuario: ture }); 
     }
 }
 
