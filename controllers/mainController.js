@@ -1,8 +1,15 @@
-//let db = require("../database/models");
+let db = require("../database/models");
 
-//const mainController = {
-    //main: function (req, res) {
-    //    return res.render("" , { });
-    //}};
-
-//module.exports = mainController;
+const mainController = {
+    index: function(req, res) {
+            db.Product.findAll({include: [{ association: "Comment" }] 
+            }) 
+                .then(function(resultados){
+                    return res.render("index" ,  {Producto: resultados});
+                })
+                .catch(function(error){
+                    return res.send(error);
+                })
+            
+        }};
+module.exports = mainController;

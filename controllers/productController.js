@@ -1,35 +1,54 @@
 const olddb = require("../localData/db");
 let db = require("../database/models");
-// let op = db.Sequelize.Op;
+let op = db.Sequelize.Op;
 
 const productController = {
     index: function (req, res) {
-        return res.render("index" , { allproducts: db.productos, usuario: true});
-    } ,
-    product: function(req, res) {
-        const id = req.params.id;
-        let producto = null;
+        db.Product.findAll({
+            include: [{ association: "Comment" }]
+        })
+            .then(function (resultados) {
+                return res.render("index", { Product: resultados });
+            })
+            .catch(function (error) {
+                return res.send(error);
+            })
 
-        for (let i = 0; i < db.productos.length; i++) {
-            if (db.productos[i].id == id) {
-                producto = db.productos[i];
-                break;
-            }
-        }
+    },
+    product: function (req, res) {
+        let autoId = req.params.id;
 
-        if (!producto) {
-            return res.send('Producto no encontrado');
-            // luego va a tener que ser asi: res.render('product', { producto: producto });
-            // asi nos trae todo, y en el otro hacerlo bien con la db
-            // aca ira con findall
-        }
+        db.Product.findByPk(autoId, { include: [{ association: 'Comment', include: [{ association: 'User' }] }] })
 
-        res.render('product', { producto: producto }); // aca ira con findby pk
-    }, 
+            .then(function (auto) {
+                if (auto) {
+                    return res.render('product', { producto: auto });
+                } else {
+                    return res.send("Producto no encontrado");
+                }
+            })
+            .catch(function (error) {
+                return res.send(error);
+            })
+
+    },
     searchResults: function (req, res) {
-        const busqueda = req.query.search;
-        return res.render("search-results", { termino: busqueda, allproducts: db.productos });
-
+        let palabraBuscada = req.query.search;
+        db.Product.findAll({ 
+            include: [ 
+            { association: "Comment" }, 
+            { association: "User" }     
+        ],
+            where: [
+                { nombre: { [op.like]: "%" + palabraBuscada + "%" } }
+            ]
+        })
+            .then(function (resultados) {
+                return res.render("search-results", { Product: resultados });
+            })
+            .catch(function (error) {
+                return res.send(error);
+            })
     },
     productAdd: function (req, res) {
         res.render('product-add', { allproducts: db.productos, usuario: true }); 

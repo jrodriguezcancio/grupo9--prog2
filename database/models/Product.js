@@ -3,17 +3,15 @@ module.exports = function (sequelize, dataTypes) {
 
     let cols = {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
             primaryKey: true,
-            autoIncrement: true
+            type: dataTypes.INTEGER
         },
         idUsuario: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            autoIncrement: true
+            type: dataTypes.INTEGER.UNSIGNED,
         },
         nombre: {
             type: dataTypes.STRING(255),
-            allowNull: false
         },
         precio: {
             type: dataTypes.INTEGER
@@ -31,6 +29,19 @@ module.exports = function (sequelize, dataTypes) {
         createdAt: "createdAt",
         updatedAT: "updatedAt",
         deletedAt: "deletedAt"
+    };
+    const Product = sequelize.define(alias, cols, config);
 
-    }
+    Product.associate = function (models) {
+        Product.hasMany(models.Comment, { 
+            as: "Comment",         
+            foreignKey: "idProducto"    
+        });
+        Product.belongsTo(models.User, { 
+            as: "User",
+            foreignKey: "idUsuario"     
+        });
+    };
+
+    return Product;
 }

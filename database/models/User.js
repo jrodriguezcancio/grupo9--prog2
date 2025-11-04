@@ -3,21 +3,18 @@ module.exports = function (sequelize, dataTypes) {
 
     let cols = {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
             primaryKey: true,
-            autoIncrement: true
+            type: dataTypes.INTEGER
         },
         nombre: {
             type: dataTypes.STRING(255),
-            allowNull: false
         },
         email: {
-            type: dataTypes.INTEGER,
-            allowNull: false
+            type: dataTypes.STRING, 
         },
         password: {
             type: dataTypes.STRING,
-            allowNull: false
         },
         fechaNacimiento: {
             type: dataTypes.DATE
@@ -35,6 +32,21 @@ module.exports = function (sequelize, dataTypes) {
         createdAt: "createdAt",
         updatedAT: "updatedAt",
         deletedAt: "deletedAt"
+    };
 
-    }
+    const User = sequelize.define(alias, cols, config);
+
+    User.associate = function (models) {
+        
+        User.hasMany(models.Product, {
+            as: "product",           
+            foreignKey: "idUsuario"    
+        });
+        User.hasMany(models.Comment, { 
+            as: "Comment",       
+            foreignKey: "idUsuario"     
+        });
+    };
+
+    return User;
 }

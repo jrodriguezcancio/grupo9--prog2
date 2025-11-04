@@ -14,7 +14,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%= producto.nombre %></h2> 
+			<h2 class="products-title"><%= producto.nombre %></h2>
 			<p class="product-detail-description">
 				<a href="/product-add">Editar</a>
 			</p>
@@ -29,18 +29,18 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for (let i = 0; i < producto.comentarios.length; i++) { 
-							let comentario = producto.comentarios[i]; %>
-						<article>
-							<img src="<%= comentario.imagenPerfil %>" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile"><%= comentario.usuario %> </a> </strong>
-									<%= comentario.texto %>
-								</p>
-							</div>
-						</article>
-						<% } %>
+						<% for (let i = 0; i < producto.Comment.length; i++) { 
+                            let comentario = producto.Comment[i]; %>
+                        <article>
+                            <img src="<%= comentario.User.avatar %>" alt="Avatar de <%= comentario.User.nombre %>">
+                            <div class="data">
+                                <p class="user">
+                                    <strong> <a href="/profile/<%= comentario.User.id %>"><%= comentario.User.nombre %> </a> </strong>
+                                    <%= comentario.comentario %>
+                                </p>
+                            </div>
+                        </article>
+                        <% } %>
 					</section>
 					<form class="form" action="" method="GET">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
