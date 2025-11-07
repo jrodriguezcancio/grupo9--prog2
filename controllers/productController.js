@@ -5,7 +5,7 @@ let op = db.Sequelize.Op;
 const productController = {
     index: function (req, res) {
         db.Product.findAll({
-            include: [{ association: "Comment" }]
+            include: [{ association: "Comment" }, { association: "User" }]
         })
             .then(function (resultados) {
                 return res.render("index", { Product: resultados });
@@ -24,7 +24,7 @@ const productController = {
                 if (auto) {
                     return res.render('product', { producto: auto });
                 } else {
-                    return res.send("Producto no encontrado");
+                    return res.send("No hay resultados para su criterio de búsqueda");
                 }
             })
             .catch(function (error) {
@@ -51,10 +51,26 @@ const productController = {
             })
     },
     productAdd: function (req, res) {
-        res.render('product-add', { allproducts: db.productos, usuario: true }); 
-        // recordar que no funciona xq no tiene bien el action el form, xq si es 
-        // product/productadd , lo toma como un atributi de product y nos dice no encontrado
-        // SOLUCION: Cambiar product add a index routes y controller
+        // falta checkear el usuario en session , si no esta logueado no puede cargar productos
+        let form = req.body;
+
+        let productoGuardar = {
+            name: form.name,
+            email: form.imagen,
+            img : form.img
+        };
+
+
+        db.Product.create(productoGuardar)
+            .then(function (productoCreado) {
+                return res.redirect("/")
+            })
+            .catch(function (error) {
+                return res.send(error);
+            })
+
+        //res.render('product-add'); IMPORTANTE => todavia no queremos que funcione xq no esta session y cookies,
+        //  no queremos manchar la db con productos sin autor
     },
    
     
