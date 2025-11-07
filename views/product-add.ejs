@@ -21,9 +21,9 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12">
-				<form>
-					<label class="form-label">Imagen:</label>
-					<input type="file" id="myfile" name="myfile" class="form-input" required>
+				<form action="/product/product-add" method="POST">
+					<label class="form-label">Imagen: </label>
+					<input type="text" id="myfile" name="img" class="form-input" required placeholder="colocar la ruta tipo /public/images/tuImagen">
 
 					<label class="form-label">Nombre del producto:</label>
 					<input type="text" id="name" name="name" class="form-input" required>

@@ -35,6 +35,9 @@
               <article class="product-box_data">
                 <h2><%= producto.nombre %></h2>
                 <p><%= producto.descripcion %></p>
+                <p class="owner-info">Publicado por: 
+                  <a href="/profile/<%= producto.User.id %>"> <strong><%= producto.User.nombre %></strong> </a>
+                </p>
                 <p>Comentarios: <%= producto.Comment.length %></p>
               </article>
             </a>
