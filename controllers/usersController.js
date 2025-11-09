@@ -1,46 +1,57 @@
 const olddb = require('../localData/db');
 let db = require("../database/models");
+const bcrypt = require("bcryptjs");
 
 const usersController = {
-    register: function(req, res){ //solo debe aparecer si no esta loagueado con un if, se enacrga de renderizar nada mas
- if (req.session.userLogged) {
+    register: function (req, res) { //solo debe aparecer si no esta loagueado con un if, se enacrga de renderizar nada mas
+        if (req.session.user) {
             return res.redirect("/users/profile");
         }
-        res.render("register");
+        return res.render("register");
     },
-    createRegister: function(req, res){ //encargado de procesar el registro y cargarlo en la db, POST
-        let nombre = req.body.nombre;
-        let email = req.body.email;
-        let password = req.body.password;
-        let fechaNacimiento = req.body.fechaNacimiento;
+    createRegister: function (req, res) { //encargado de procesar el registro y cargarlo en la db, POST
+        let form = req.body;
 
-
-        if ( password.length < 3) {
-            return res.send("La contraseña debe tener al menos 3 caracteres");
+        if (!form.email) {
+            return res.render('register', { error: 'El email es obligatorio' });
         }
 
+        if (form.contrasenia == undefined) {
+            return res.render('register', { error: 'La contraseña es obligatoria' });
+        }
 
-        const passwordEncriptada = bcrypt.hashSync(password, 10);
+        if (form.contrasenia.length < 3 ) {
+            return res.render('register', { error: 'La contraseña debe tener por lo menos 3 o mas caracteres'});
+        }
+
+        let contra = bcrypt.hashSync(form.contrasenia, 10);
+
+        let usuarioGuardar = {
+            nombre: form.nombreUsuario,
+            email: form.email,
+            password: contra,
+            fechaNacimiento: form.nacimiento,
+            domicilio: form.domicilio,
+            avatar: form.avatar
+        };
 
         // Verificar si ya existe un usuario con ese email
-        db.User.findOne({ where: { email: email } })
+        db.User.findOne({
+             where: { email: usuarioGuardar.email } 
+        })
             .then(function (usuarioExistente) {
                 if (usuarioExistente) {
-                    return res.send("Ya existe un usuario con ese email");
+                    return res.render('register', { error: 'Este email ya está registrado' });
                 }
 
                 // Crear nuevo usuario
-                return db.User.create({
-                    nombre: nombre,
-                    email: email,
-                    password: passwordEncriptada,
-                    fechaNacimiento: fechaNacimiento,
-                });
-            })
-            .then(function (nuevoUsuario) {
-                if (nuevoUsuario) {
-                    return res.redirect("/users/login");
-                }
+                db.User.create(usuarioGuardar)
+                .then(function(results) {
+                    return res.redirect("/users/login")
+                })
+                .catch(function(error) {
+                    return res.send(error);
+                })
             })
             .catch(function (error) {
                 return res.send(error);
@@ -48,19 +59,59 @@ const usersController = {
     },
     profile: function (req, res) { // 
         const usuario = db.usuario;
-        res.render('profile');
+        return res.render('profile');
     },
-    login : function (req, res) { //solo debe aparecer si no esta loagueado con un if, se enacrga de renderizar nada mas
+    login: function (req, res) {
+    if (req.session.user != undefined) {
+            return res.redirect("/users/profile")
+        } 
         return res.render("login");
     },
     processLogin: function (req, res) {
-        res.render("/") //falta todo session y cookies para acceder a la db y ver si el form coincide con la db, POST
-    },
-    logout: function (req, res) { //todavia no va a funcionar , hay que procesar el login para hacer un logout
-        req.session.destroy();
-        res.clearCookie('userData');
+        let email = req.body.email;
+        let password = req.body.contrasenia;
 
-        return res.redirect("/");
+        if (!email) {
+            return res.render('login', { error: 'Email y contraseña son obligatorios' });
+        }
+
+        if (!password) {
+            return res.render('login', { error: 'Email y contraseña son obligatorios' });
+        }
+
+        db.User.findOne({ where: { email: email } })
+            .then(function (user) {
+                if (!user) {
+                    return res.render('login', { error: 'El email no está registrado' });
+                }
+
+                if (!bcrypt.compareSync(password, user.password)) {
+                    return res.render('login', { error: 'La contraseña es incorrecta' });
+                }
+
+                req.session.user = {
+                    id: user.id,
+                    nombre: user.nombre,
+                    email: user.email
+                };
+
+                if (req.body.recordarme) {
+                    let userCookieData = { id: user.id, email: user.email };
+                    res.cookie('userLogueado', userCookieData, { maxAge: 6000000 });
+                }
+
+                return res.redirect("/users/profile/" + user.id);
+            })
+            .catch(function (error) {
+                console.error("Error al intentar iniciar sesión:", error);
+                return res.render('login', { error: 'Error interno del servidor.' });
+            });
+    },
+    logout: function (req, res) {
+        req.session.destroy();
+        res.clearCookie('userLogueado');
+
+        return res.redirect("/users/login");
     }
 
 }

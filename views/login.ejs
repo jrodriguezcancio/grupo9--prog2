@@ -21,12 +21,20 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/" method="get">
-				<label class="form">Nombre de usuario(Email):</label>
-							<input type="text" name="nombreUsuario" id="nombreUsuario" class="form-input" required>
-							<label class="form">Contraseña:</label>
-							<input type="password" name="contrasenia" id="contrasenia" class="form-input" required>
-							<button type="submit" class="btn">Ingresar</button>
+				<form action="/users/login" method="POST">
+					<label class="form">Email:</label>
+					<input type="email" name="email" id="email" class="form-input" required>
+
+					<label class="form">Nombre de usuario(Email):</label>
+					<input type="text" name="nombreUsuario" id="nombreUsuario" class="form-input" required>
+
+					<label class="form">Contraseña:</label>
+					<input type="password" name="contrasenia" id="contrasenia" class="form-input" required>
+
+					<input type="checkbox" id="tyc" name="tyc">
+					<label for="tyc" class="form">Recordame</label>
+
+					<button type="submit" class="btn">Ingresar</button>
 				</form>
 
 

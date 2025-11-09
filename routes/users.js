@@ -8,9 +8,15 @@ const router = express.Router();
 
 const usersController = require('../controllers/usersController');
 
-router.get('/login', usersController.login);
-router.get('/register', usersController.register)
-router.post("/register", usersController.createRegister);
 router.get('/profile', usersController.profile);
+router.get('/profile/:id', usersController.profile);
+
+router.get('/register', usersController.register)
+router.post('/newuser', usersController.createRegister);
+
+router.get('/login', usersController.login);
+router.post("/login", usersController.processLogin);
+
+router.post('/logout', usersController.logout)
 
 module.exports = router;

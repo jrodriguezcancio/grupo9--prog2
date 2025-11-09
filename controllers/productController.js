@@ -56,7 +56,7 @@ const productController = {
 
         let productoGuardar = {
             name: form.name,
-            email: form.imagen,
+            description: form.description,
             img : form.img
         };
 

@@ -18,7 +18,7 @@
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
 				<div>
-						<form action="/" method="get">
+						<form action="/users/newuser" method="POST">
 							<label class="form"> Nombre de usuario: </label>
 							<input type="text" name="nombreUsuario" id="nombreUsuario" class="form-input" required>
 
@@ -30,6 +30,12 @@
 
 							<label class="form">Fecha de nacimiento:</label>
 							<input type="date" name="nacimiento" id="nacimiento" class="form-input" required>
+
+							<label class="form">Domicilio: </label>
+							<input type="text" name="domicilio" id="domicilio" class="form-input" required>
+
+							<label class="form">Foto de perfil</label>
+							<input type="text" name="avatar" id="avatar" class="form-input" placeholder="colocar la ruta tipo /public/images/users/tuimagen" required>
 
 							<button type="submit" class="btn">Registrarme</button>
 						</form>

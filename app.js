@@ -22,22 +22,32 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// session
 app.use(session({
-  secret: "mensaje secreto", 
+  secret: "myapp", 
   resave: false,
   saveUninitialized: true,
 }));
 
+// middleware de session hacia Vistas
+app.use(function(req, res, next) {
+	if (req.session.user != undefined) {
+		res.locals.user = req.session.user;
+	}
+	return next();
+});
+
+// middleware de Cookies hacia Vistas
 app.use(function (req, res, next) {
-  if (!req.session.userLogged && req.cookies.userEmail) {
+  if (!req.session.user && req.cookies.userEmail) {
     db.User.findOne({
       where: { email: req.cookies.userEmail }
     })
       .then(function (user) {
         if (user) {
-          req.session.userLogged = {
+          req.session.user = {
             id: user.id,
-            nombre: user.nombre, 
+            nombre: user.nombre,
             email: user.email
           };
         }
@@ -53,12 +63,6 @@ app.use(function (req, res, next) {
   }
 });
 
-app.use(function(req, res, next) {
-	if (req.session.userLogged != undefined) {
-		res.locals.user = req.session.userLogged;
-	}
-	return next();
-});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
