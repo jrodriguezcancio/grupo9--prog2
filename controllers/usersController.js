@@ -125,7 +125,6 @@ const usersController = {
 
                 req.session.user = {
                     id: user.id,
-                    nombre: user.nombre,
                     email: user.email
                 };
 

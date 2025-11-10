@@ -38,30 +38,18 @@ app.use(function(req, res, next) {
 });
 
 // middleware de Cookies hacia Vistas
-app.use(function (req, res, next) {
-  if (!req.session.user && req.cookies.userEmail) {
-    db.User.findOne({
-      where: { email: req.cookies.userEmail }
-    })
-      .then(function (user) {
-        if (user) {
-          req.session.user = {
-            id: user.id,
-            nombre: user.nombre,
-            email: user.email
-          };
-        }
-        next();
-      })
-      .catch(function (error) {
-        console.error(error);
-        next();
-      });
+app.use(function(req, res, next) {
 
-  } else {
-    next();
+  console.log(req.cookies.user);
+  
+  
+  if (req.cookies.user != undefined && req.session.user == undefined) {
+    res.locals.user = req.cookies.user;   // uno lo envia a las vistas (partials)
+    req.session.user = req.cookies.user;  // otro lo vuelve a poner en session
   }
-});
+
+  return next();
+})
 
 
 app.use('/', indexRouter);
