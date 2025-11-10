@@ -44,7 +44,7 @@ const productController = {
             ]
         })
             .then(function (resultados) {
-                return res.render("search-results", { product: resultados });
+                return res.render("search-results", { product: resultados  , palabraBuscada: palabraBuscada});
             })
             .catch(function (error) {
                 return res.send(error);
