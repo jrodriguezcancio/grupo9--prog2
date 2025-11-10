@@ -39,7 +39,7 @@
                 <h2><%= producto.nombre %></h2>
                 <p><%= producto.descripcion %></p>
                 <p class="owner-info">Publicado por: 
-                  <a href="/profile/<%= producto.user.id %>"> <strong><%= producto.user.nombre %></strong> </a>
+                  <a href="/users/profile/<%= producto.user.id %>"> <strong><%= producto.user.nombre %></strong> </a>
                 </p>
                 <p>Comentarios: <%= producto.comment.length %></p>
               </article>

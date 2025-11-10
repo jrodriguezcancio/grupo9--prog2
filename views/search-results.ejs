@@ -19,12 +19,12 @@
 	<!-- Search Result -->
 	<div class="container products-wrapper">
     <div class="d-flex align-items-center">
-        <h2 class="products-title">Resultados para: <%= Product.nombre %></h2>
+        <h2 class="products-title">Resultados para: <%= product.nombre %></h2>
     </div>
 
     <div class="row">
-        <% for (let i = 0; i < Product.length; i++) { 
-                let producto = Product[i]; %>
+        <% for (let i = 0; i < product.length; i++) { 
+                let producto = product[i]; %>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <section class="product-box">
                         <a href="/product/<%= producto.id %>">
@@ -35,7 +35,7 @@
                                 <h2><%= producto.nombre %></h2>
                                 <p><%= producto.descripcion %></p>
                                 
-                                <p>Comentarios: <%= producto.Comment.length %></p>
+                                <p>Comentarios: <%= producto.comment.length %></p>
                                 
                             </article>
                         </a>
