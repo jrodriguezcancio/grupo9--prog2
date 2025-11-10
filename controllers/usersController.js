@@ -130,7 +130,7 @@ const usersController = {
 
                 if (req.body.recordarme) {
                     let userCookieData = { id: user.id, email: user.email };
-                    res.cookie('userLogueado', userCookieData, { maxAge: 600000 });
+                    res.cookie('user', userCookieData, { maxAge: 600000 });
                 }
 
                 return res.redirect("/users/profile/" + user.id);
@@ -142,7 +142,7 @@ const usersController = {
     },
     logout: function (req, res) {
         req.session.destroy();
-        res.clearCookie('userLogueado');
+        res.clearCookie('user');
 
         return res.redirect("/users/login");
     }
