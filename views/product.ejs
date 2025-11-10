@@ -31,13 +31,13 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for (let i = 0; i < producto.Comment.length; i++) { 
-                            let comentario = producto.Comment[i]; %>
+						<% for (let i = 0; i < producto.comment.length; i++) { 
+                            let comentario = producto.comment[i]; %>
                         <article>
-                            <img src="<%= comentario.User.avatar %>" alt="Avatar de <%= comentario.User.nombre %>">
+                            <img src="<%= comentario.user.avatar %>" alt="Avatar de <%= comentario.user.nombre %>">
                             <div class="data">
                                 <p class="user">
-                                    <strong> <a href="/users/profile/<%= comentario.User.id %>"><%= comentario.User.nombre %> </a> </strong>
+                                    <strong> <a href="/users/profile/<%= comentario.user.id %>"><%= comentario.user.nombre %> </a> </strong>
                                     <%= comentario.comentario %>
                                 </p>
                             </div>
