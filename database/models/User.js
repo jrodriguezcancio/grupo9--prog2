@@ -30,7 +30,7 @@ module.exports = function (sequelize, dataTypes) {
         tableName: "usuarios",
         timestamps: true,
         createdAt: "createdAt",
-        updatedAT: "updatedAt",
+        updatedAt: "updatedAt",
         deletedAt: "deletedAt"
     };
 

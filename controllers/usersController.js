@@ -57,7 +57,7 @@ const usersController = {
                 return res.send(error);
             });
     },
-    profile: function (req, res) {
+     profile: function (req, res) {
         let id = req.params.id;
 
         if (!id && req.session.user) {
@@ -94,6 +94,7 @@ const usersController = {
                 return res.send("Error al cargar el perfil.");
             });
     },
+
     login: function (req, res) {
     if (req.session.user != undefined) {
             return res.redirect("/users/profile")

@@ -21,7 +21,7 @@ module.exports = function (sequelize, dataTypes) {
         tableName: "comentarios",
         timestamps: true,
         createdAt: "createdAt",
-        updatedAT: "updatedAt",
+        updatedAt: "updatedAt",
         deletedAt: "deletedAt"
     };
 
