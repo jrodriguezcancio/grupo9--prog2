@@ -57,9 +57,42 @@ const usersController = {
                 return res.send(error);
             });
     },
-    profile: function (req, res) { // 
-        const usuario = db.usuario;
-        return res.render('profile');
+    profile: function (req, res) {
+        let id = req.params.id;
+
+        if (!id && req.session.user) {
+            id = req.session.user.id;
+        }
+
+        if (!id) {
+            return res.redirect('/users/login');
+        }
+
+        db.User.findByPk(id, {
+            include: [
+                {
+                    association: 'Product', 
+                    include: [{ association: 'Comment' }] 
+                },
+                {
+                    association: 'Comment' 
+                }
+            ]
+        })
+            .then(function (resultados) {
+                if (!resultados) {
+                    return res.redirect("/");
+                }
+
+                return res.render('profile', {
+                    usuario: resultados,
+                    allproducts: resultados.product
+                });
+            })
+            .catch(function (error) {
+                console.error("Error al cargar perfil:", error);
+                return res.send("Error al cargar el perfil.");
+            });
     },
     login: function (req, res) {
     if (req.session.user != undefined) {

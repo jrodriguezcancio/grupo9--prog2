@@ -50,14 +50,22 @@ const productController = {
                 return res.send(error);
             })
     },
+    productAddshow: function(req, res) {
+        if (req.session.user == undefined) {
+            return res.redirect("/users/login")
+        } else {
+            return res.render('product-add')
+        }
+    },
     productAdd: function (req, res) {
-        // falta checkear el usuario en session , si no esta logueado no puede cargar productos
         let form = req.body;
 
         let productoGuardar = {
-            name: form.name,
-            description: form.description,
-            img : form.img
+            idUsuario : req.session.user.id,
+            nombre: form.name,
+            precio : form.price,
+            descripcion: form.description,
+            imagen : form.img
         };
 
 
@@ -69,8 +77,6 @@ const productController = {
                 return res.send(error);
             })
 
-        //res.render('product-add'); IMPORTANTE => todavia no queremos que funcione xq no esta session y cookies,
-        //  no queremos manchar la db con productos sin autor
     },
    
     
