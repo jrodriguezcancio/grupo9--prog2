@@ -83,15 +83,16 @@ const productController = {
             return res.redirect("/users/login");
         }
 
-        let idProducto = req.params.id;         
-        let comentarioTexto = req.body.comentario; 
         let idUsuario = req.session.user.id;
+        let idProducto = req.params.id;         
+        let comentarioTexto = req.body.comentario;
 
         let comentarioAGuardar = {
-            idProducto: idProducto,
             idUsuario: idUsuario,
-            texto: comentarioTexto, 
+            idProducto: idProducto,
+            comentario: comentarioTexto
         };
+        
         db.Comment.create(comentarioAGuardar)
             .then(function(nuevoComentario) {
                 return res.redirect('/product/' + idProducto + 'comentarios'); 
