@@ -78,8 +78,29 @@ const productController = {
             })
 
     },
-   
-    
+    addComment: function(req, res) {
+        if (!req.session.user) {
+            return res.redirect("/users/login");
+        }
+
+        let idProducto = req.params.id;         
+        let comentarioTexto = req.body.comentario; 
+        let idUsuario = req.session.user.id;
+
+        let comentarioAGuardar = {
+            idProducto: idProducto,
+            idUsuario: idUsuario,
+            texto: comentarioTexto, 
+        };
+        db.Comment.create(comentarioAGuardar)
+            .then(function(nuevoComentario) {
+                return res.redirect('/product/' + idProducto + 'comentarios'); 
+            })
+            .catch(function(error) {
+                console.error("Error al guardar comentario:", error);
+                return res.send("Ocurrió un error al guardar el comentario.");
+            });
+    }
 };
 
 module.exports = productController;
