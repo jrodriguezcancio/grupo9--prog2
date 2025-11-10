@@ -71,11 +71,11 @@ const usersController = {
         db.User.findByPk(id, {
             include: [
                 {
-                    association: 'Product', 
-                    include: [{ association: 'Comment' }] 
+                    association: 'product', 
+                    include: [{ association: 'comment' }] 
                 },
                 {
-                    association: 'Comment' 
+                    association: 'comment' 
                 }
             ]
         })
@@ -131,7 +131,7 @@ const usersController = {
 
                 if (req.body.recordarme) {
                     let userCookieData = { id: user.id, email: user.email };
-                    res.cookie('userLogueado', userCookieData, { maxAge: 6000000 });
+                    res.cookie('userLogueado', userCookieData, { maxAge: 600000 });
                 }
 
                 return res.redirect("/users/profile/" + user.id);

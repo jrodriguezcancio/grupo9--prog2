@@ -5,10 +5,10 @@ let op = db.Sequelize.Op;
 const productController = {
     index: function (req, res) {
         db.Product.findAll({
-            include: [{ association: "Comment" }, { association: "User" }]
+            include: [{ association: "comment" }, { association: "user" }]
         })
             .then(function (resultados) {
-                return res.render("index", { Product: resultados });
+                return res.render("index", { product: resultados });
             })
             .catch(function (error) {
                 return res.send(error);
@@ -18,7 +18,7 @@ const productController = {
     product: function (req, res) {
         let autoId = req.params.id;
 
-        db.Product.findByPk(autoId, { include: [{ association: 'Comment', include: [{ association: 'User' }] }] })
+        db.Product.findByPk(autoId, { include: [{ association: 'comment', include: [{ association: 'user' }] }] })
 
             .then(function (auto) {
                 if (auto) {
@@ -36,15 +36,15 @@ const productController = {
         let palabraBuscada = req.query.search;
         db.Product.findAll({ 
             include: [ 
-            { association: "Comment" }, 
-            { association: "User" }     
+            { association: "comment" }, 
+            { association: "user" }     
         ],
             where: [
                 { nombre: { [op.like]: "%" + palabraBuscada + "%" } }
             ]
         })
             .then(function (resultados) {
-                return res.render("search-results", { Product: resultados });
+                return res.render("search-results", { product: resultados });
             })
             .catch(function (error) {
                 return res.send(error);
